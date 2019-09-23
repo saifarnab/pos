@@ -1,0 +1,79 @@
+@model PosSustemUIU.Models.ProductCategory
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Add New Product Category</h4>
+            </div>
+            <form asp-action="Create"  method="POST" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                           
+                            <div class="form-group">
+                                <label asp-for="Code" class="control-label"></label>
+                                <input asp-for="Code" class="form-control" />
+                                <span asp-validation-for="Code" class="text-danger"></span>
+                            </div>
+                            
+                             <div class="form-group">
+                                <label asp-for="Meta" class="control-label"></label>
+                                <input asp-for="Meta" class="form-control" />
+                                <span asp-validation-for="Meta" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" class="form-control" rows="9"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input asp-for="IsActive" type="checkbox" class="custom-control-input" id="customControlAutosizing1" checked>
+                                <label class="custom-control-label" for="customControlAutosizing1">Active</label>
+                            </div>
+                       </div>
+                        
+                        <div class="col">
+                            <div class="card-action">
+                                <button type="submit" class="btn btn-primary float-right">Submit</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script>
+    $(".select2").select2();
+
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
+}

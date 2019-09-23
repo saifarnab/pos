@@ -1,0 +1,22 @@
+@model IEnumerable<PosSustemUIU.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col">
+        @await Component.InvokeAsync(
+        "DataTable", new DataTableModel { 
+            Controller = "Product",
+            Columns = new List<string>{"Name", "Code", "Category", "Supplier", "Brand", "Active", },
+            Heading = "Products",
+            TableData = Model,
+            CreateButton = true,
+            Keys = new List<string> {"Name", "Code", "ProductCategoryID", "SupplierId", "BrandId", "IsActive", },
+            Actions = new List<TableActions> {TableActions.Show, TableActions.Edit, TableActions.Delete, TableActions.SoftDelete},
+            ImageDir = "products", 
+
+        })
+    </div>
+</div>

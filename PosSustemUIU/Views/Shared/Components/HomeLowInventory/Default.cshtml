@@ -1,0 +1,25 @@
+@model IEnumerable<PosSustemUIU.Models.Transection>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title m-b-0">Low Inventory</h5>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">Product</th>
+                <th class="text-center" scope="col">Remaining Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transection in Model)
+                {
+                    <tr>
+                        <td class="text-center">@transection.Product.Name</td>
+                        <td class="text-center">@transection.RemainingQuantity</td>
+                    </tr>   
+                }
+        </tbody>
+    </table>
+</div>
+

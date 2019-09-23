@@ -1,0 +1,10 @@
+{
+    "cSpell.words": [
+        "Sustem",
+        "autoclose",
+        "isvalid",
+        "purchse"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/43f28b64-0c65-4876-a46a-aa2849f7a263/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/possystem",
+    "appService.deploySubpath": ""
+}

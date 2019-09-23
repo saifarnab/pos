@@ -1,0 +1,16 @@
+@model IEnumerable<PosSustemUIU.Models.ProductCategory>
+
+<div class="row">
+    <div class="col">
+        @await Component.InvokeAsync(
+        "DataTable", new DataTableModel { 
+            Controller = "ProductCategory",
+            Columns = new List<string>{"Name", "Description", "Code", "Active", },
+            Heading = "Product Categories",
+            TableData = Model,
+            CreateButton = true,
+            Keys = new List<string> {"Name", "Description", "Code", "IsActive", },
+            Actions = new List<TableActions> {TableActions.Edit, TableActions.Delete, TableActions.SoftDelete}
+        })
+    </div>
+</div>

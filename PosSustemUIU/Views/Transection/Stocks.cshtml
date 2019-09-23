@@ -1,0 +1,53 @@
+@model IEnumerable<PosSustemUIU.Models.Transection>
+
+@{
+    ViewData["Title"] = "Sales";
+    int count = 0;
+
+}
+
+<div class="card" >
+    <div class="card-header">
+        <h4>Product In Stocks</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="zero_config" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">SN</th>
+                        <th class="text-center">Product</th>
+                        <th class="text-center">Remaining Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Expire Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var transection in Model)
+                        {
+                            count ++;
+                            <tr>
+                                <td class="text-center">@count</td>
+                                <td class="text-center">@transection.Product.Name</td>
+                                <td class="text-center">@transection.RemainingQuantity</td>
+                                <td class="text-center">@transection.Price</td>
+                                <td class="text-center">@transection.ExpireDate</td>
+                                
+                            </tr>   
+                        }
+                </tbody>
+                
+                <tfoot>
+                    <tr>
+                        <th class="text-center">SN</th>
+                        <th class="text-center">Product</th>
+                        <th class="text-center">Remaining Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Expire Date</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+

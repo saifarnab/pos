@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col">
+        @await Component.InvokeAsync(
+        "DataTable", new DataTableModel { 
+            Controller = "Customer",
+            Columns = new List<string>{"Name", "Email", "Phone", "Image", "Active", },
+            Heading = "Customers",
+            TableData = Model,
+            CreateButton = true,
+            Keys = new List<string> {"FirstName", "Email", "PhoneNumber", "Image", "IsActive", },
+            Actions = new List<TableActions> {TableActions.Show, TableActions.Edit, TableActions.Delete, TableActions.SoftDelete},
+            ImageDir = "customers", 
+
+        })
+    </div>
+</div>

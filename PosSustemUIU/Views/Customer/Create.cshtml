@@ -1,0 +1,116 @@
+@model PosSustemUIU.Models.Customer
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Add New Customer</h4>
+            </div>
+            <form asp-action="Create"  method="POST" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="FirstName" class="control-label"></label>
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PhoneNumber" class="control-label"></label>
+                                <input asp-for="PhoneNumber" class="form-control" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                             <div class="form-group">
+                                <label asp-for="OtherContact" class="control-label"></label>
+                                <input asp-for="OtherContact" class="form-control" />
+                                <span asp-validation-for="OtherContact" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Address" class="control-label"></label>
+                                <textarea asp-for="Address" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label asp-for="LastName" class="control-label"></label>
+                                <input asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                           
+                             <div class="form-group">
+                                <label asp-for="Image" class="control-label"></label>
+                                <input asp-for="Image" class="form-control" type="file"/>
+                                <span asp-validation-for="Image" class="text-danger"></span>
+                            </div>
+                             <div class="form-group">
+                                <label asp-for="CustomerAreaId" class="control-label" style="margin-bottom: 0px;"></label>
+                                <select asp-for="CustomerAreaId" class="select2 form-control custom-select" style="width: 100%;">
+                                            <option>Select Area</option>
+                                            @foreach (var area in ViewBag.Areas)
+                                            {
+                                                <option value="@area.Id">@area.Name</option>
+                                                
+                                            }
+                                        </select>
+                                <span asp-validation-for="CustomerAreaId" class="text-danger"></span>
+                            </div>
+                             <div class="form-group">
+                                <label asp-for="Meta" class="control-label"></label>
+                                <input asp-for="Meta" class="form-control" />
+                                <span asp-validation-for="Meta" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input asp-for="IsActive" type="checkbox" class="custom-control-input" id="customControlAutosizing1" checked>
+                                <label class="custom-control-label" for="customControlAutosizing1">Active</label>
+                            </div>
+                       </div>
+                        
+                        <div class="col">
+                            <div class="card-action">
+                                <button type="submit" class="btn btn-primary float-right">Submit</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script>
+    $(".select2").select2();
+
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
+}

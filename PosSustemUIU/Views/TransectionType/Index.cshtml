@@ -1,0 +1,20 @@
+@model IEnumerable<PosSustemUIU.Models.TransectionType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col">
+        @await Component.InvokeAsync(
+        "DataTable", new DataTableModel { 
+            Controller = "TransectionType",
+            Columns = new List<string>{"Name", "Group Name", "Other Note", "Active", },
+            Heading = "TransectionTypes",
+            TableData = Model,
+            CreateButton = true,
+            Keys = new List<string> {"Name", "GroupName", "Meta", "IsActive", },
+            Actions = new List<TableActions> { TableActions.Show}
+        })
+    </div>
+</div>

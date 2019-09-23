@@ -1,0 +1,36 @@
+1. product sale
+2. Stock
+3. low inventory
+4. home page done
+
+
+
+
+
+
+
+Features: 
+    1. Customers: add customers name and their details like address, mobile number, email address etc.
+    2. You can add products here with stock information, supplier name, inventory info, barcode number etc. (admin)
+    3. Suppliers: You can save your supplier information here with their contact details. (admin)
+    4. Receiving: If client back your product then this option will help you to receive the product that will hit your inventory
+    5. Sales: This option help your sales person to sale your product from stock & receive the payment by cash or card
+    6. Employees: You can add employees and their details. (admin)
+    7. Store Configuration: You can set or edit your shop information, address, and phone number here. (admin)
+    8. Barcode integrated purchase and sales system is available here. (admin)
+    9. Expire date alert feature.
+    10. Issue an invoice.
+    11. Track sale history with login id 
+Report:
+    • Sales Report: You will get day, month & year wise sales report with stock, vat and profit information.
+    • Categories Report: You can check how much product are in your stock in category wise.
+    • Customers Report: You can check which customers take how much product with price by date wise.
+    • Suppliers Report: You can see the supplier list & their products here.
+    • Items Report: You can see the stock report and sales report here date wise.
+    • Employees Report: You can check which employee sale how much & deal with which customers.
+    • Taxes Report: You can see all tax report here.
+    • Discounts Report: You can see how much discount you provide to your clients and total summery report.
+    • Payments Report: You can see all payment details date wise.
+    • Low Inventory Report: If your product is in a re-order level then this option show you the current status.
+    • Inventory Summary Report: Full inventory report is here date wise.
+ 

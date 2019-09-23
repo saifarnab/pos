@@ -1,0 +1,72 @@
+@model IEnumerable<PosSustemUIU.Models.ProductPurchase>
+
+@{
+    ViewData["Title"] = "Purshase";
+    int count = 0;
+
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-6">
+                <h5 class="card-title">Purshase</h5>
+            </div>
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-primary btn-sm float-right">
+                    <a  asp-action="Create" class="text-white">Add New</a>
+                </button>   
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="zero_config" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">SN</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Total Price</th>
+                        <th class="text-center">Paid Ammount</th>
+                        <th class="text-center">Unpaid Ammount</th>
+                        <th class="text-center">Total Vat</th>
+                        <th class="text-center">Purchase Date</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var productPurchase in Model)
+                        {
+                            count ++;
+                            <tr>
+                                <td class="text-center">@count</td>
+                                <td class="text-center">@productPurchase.TotalQuantity</td>
+                                <td class="text-center">@productPurchase.TotalPrice</td>
+                                <td class="text-center">@productPurchase.ReceivingCost</td>
+                                <td class="text-center">@(productPurchase.TotalPrice - productPurchase.ReceivingCost )</td>
+                                <td class="text-center">@productPurchase.TotalVat</td>
+                                <td class="text-center">@productPurchase.PurchaseDate</td>
+                                <td class="text-center">
+                                     <a  title="Show" asp-action="Details" asp-route-id="@productPurchase.Id" class="btn btn-cyan btn-sm text-white"><i class="fas fa-eye" aria-hidden="true"></i></a>
+                                </td> 
+                            </tr>   
+                        }
+                        
+                </tbody>
+                
+                <tfoot>
+                    <tr>
+                        <th class="text-center">SN</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Total Price</th>
+                        <th class="text-center">Paid Ammount</th>
+                        <th class="text-center">Unpaid Ammount</th>
+                        <th class="text-center">Total Vat</th>
+                        <th class="text-center">Purchase Date</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

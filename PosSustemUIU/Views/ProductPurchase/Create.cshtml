@@ -1,0 +1,203 @@
+@model PosSustemUIU.ViewModels.PurchaseVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="row" id="purchsePage">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Create New Purchase</h4>
+            </div>
+            <form asp-action="Create"  method="POST" enctype="multipart/form-data" id="purchaseForm">
+                <div class="card-body">
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label asp-for="SupplierId" class="control-label" style="margin-bottom: 0px;"></label>
+                                <select asp-for="SupplierId" class="select2 form-control custom-select" id="supplierId" style="width: 100%;">
+                                    <option selected disabled>Select Area</option>
+                                    @foreach (var supplier in ViewBag.Suppliers)
+                                    {
+                                        <option value="@supplier.Id">@supplier.Name</option>
+                                        
+                                    }
+                                        </select>
+                                <span asp-validation-for="SupplierId" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label asp-for="ReceivingCost" class="control-label"></label>
+                                <input v-model="paidAmount" asp-for="ReceivingCost" class="form-control" />
+                                <span asp-validation-for="ReceivingCost" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="PurchaseNote" class="control-label"></label>
+                                <textarea v-model="purchaseNote" asp-for="PurchaseNote" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="PurchaseNote" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label asp-for="ReferenceInternal" class="control-label"></label>
+                                <input v-model="internalMemo" asp-for="ReferenceInternal" class="form-control" />
+                                <span asp-validation-for="ReferenceInternal" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="PurchaseDate" class="control-label"></label>
+                                <input  asp-for="PurchaseDate" type="text" class="form-control mydatepicker" id="purchaseDate" placeholder="mm/dd/yyyy">
+                                <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="DeliveryNote" class="control-label"></label>
+                                <textarea v-model="deliveryNote" asp-for="DeliveryNote" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="DeliveryNote" class="text-danger"></span>
+                            </div>
+                            
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label asp-for="ReferenceExternal" class="control-label"></label>
+                                <input v-model="externalMemo" asp-for="ReferenceExternal" class="form-control" />
+                                <span asp-validation-for="ReferenceExternal" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Attachment" class="control-label"></label>
+                                <input asp-for="Attachment" class="form-control" type="file"/>
+                                <span asp-validation-for="Attachment" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Meta" class="control-label"></label>
+                                <textarea v-model="otherNote" asp-for="Meta" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="Meta" class="text-danger"></span>
+                            </div>
+                        </div>
+                    
+                        <div class="col-12">
+                            <h4>Select Product</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead style="background: #e2e2e2;">
+                                        <tr>
+                                            <th class="text-center font-weight-bold" style="width: 40%;">Product</th>
+                                            <th class="text-center font-weight-bold" style="width: 15%;">Price/Quantity</th>
+                                            <th class="text-center font-weight-bold" style="width: 15%;">Quantity</th>
+                                            <th class="text-center font-weight-bold" style="width: 20%;">Expire Date</th>
+                                            <th class="text-center font-weight-bold" style="width: 10%;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <select  class="select2 form-control custom-select" style="width: 100%;" id="product">
+                                                    <option selected disabled value="">Select Product</option>
+                                                     <template v-for="(product, index) in products">
+                                                         <option :value="product.id">{{ product.name }}</option>
+                                                    </template>
+                                                </select>
+                                                <span v-if="productError" class="text-danger">Select Product</span>
+                                            </td>
+                                            <td>
+                                                <input v-model="price" class="form-control" min="0" placeholder="price" type="number" name="" id="">
+                                                <span v-if="priceError" class="text-danger">Set Product Price</span>
+                                            </td>
+                                            <td>
+                                                <input v-model="quantity" class="form-control" min="0" placeholder="quantity" type="number" name="" id="">
+                                                <span v-if="quantityError" class="text-danger">Set Product Quantity</span>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control mydatepicker" id="expireDate" placeholder="mm/dd/yyyy">
+                                                <span v-if="expireDateError" class="text-danger">Set Product Expired Date</span>
+
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-primary" v-on:click="addProductToList"><i class="fas fa-plus-square"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-12" v-if="selectedProducts.length > 0">
+                            <h4>Selected Products</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead style="background: #e2e2e2;">
+                                        <tr>
+                                            <th class="text-center font-weight-bold" style="width: 40%;">Product</th>
+                                            <th class="text-center font-weight-bold" style="width: 15%;">Price/Quantity</th>
+                                            <th class="text-center font-weight-bold" style="width: 15%;">Quantity</th>
+                                            <th class="text-center font-weight-bold" style="width: 15%;">Total</th>
+                                            <th class="text-center font-weight-bold" style="width: 20%;">Expire Date</th>
+                                            <th class="text-center font-weight-bold" style="width: 10%;"></th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <template v-for="(product, index) in selectedProducts">
+                                            <tr>
+                                                <td class="text-center">{{ product.productName }}</td>
+                                                <td class="text-center">{{ product.price }}</td>
+                                                <td class="text-center">{{ product.quantity }}</td>
+                                                <td class="text-center">{{ parseInt(product.price) * parseInt(product.quantity)}}</td>
+                                                <td class="text-center">{{ product.expireDate }}</td>
+                                                <td><button type="button" class="btn btn-sm btn-danger" v-on:click="removeSelectedProduct(product, index)"><i class="fas fa-minus-square"></i></button></td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th class="text-center font-weight-bold" style="width: 40%;">Total</th>
+                                            <th class="text-center font-weight-bold" style="width: 20%;"></th>
+                                            <th class="text-center font-weight-bold" style="width: 15%;">{{ totalQuantity }}</th>
+                                            <th class="text-center font-weight-bold" style="width: 15%;">&#2547; {{ totalPrice }} Tk</th>
+                                            <th class="text-center font-weight-bold" style="width: 10%;"></th>
+                                        </tr>
+                                    </tfoot>
+
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input asp-for="IsActive" type="checkbox" class="custom-control-input" id="customControlAutosizing1" checked>
+                                <label class="custom-control-label" for="customControlAutosizing1">Active</label>
+                            </div>
+                       </div>
+                        
+                        <div class="col">
+                            <div class="card-action">
+                                <button type="button" v-on:click="saveProductPurchase" class="btn btn-primary float-right">Submit</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" asp-for="Id" :value="returnId" />
+           </form>
+        </div>
+    </div>
+</div>
+
+<a>
+    <a asp-action="Index">Back to List</a>
+</a>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
+    <script src="~/js/purchase.js"></script>
+
+}

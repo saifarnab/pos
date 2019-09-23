@@ -1,0 +1,60 @@
+﻿@page
+@model LoginModel
+
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
+    <div class="auth-box bg-dark border-top border-secondary">
+        <div id="loginform">
+            <div class="text-center p-t-20 p-b-20">
+                <span class="db"><img src="~/admin/assets/images/logo.png" alt="logo" /></span>
+            </div>
+            <!-- Form -->
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form class="form-horizontal m-t-20" method="post" id="loginform">
+                <div class="row p-b-30">
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                            </div>
+                            <input type="text" asp-for="Input.Email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" required="">
+                        </div>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                            </div>
+                            <input asp-for="Input.Password" type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
+                        </div>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+                        <div class="input-group mb-3">
+                            <div class="checkbox">
+                                <label asp-for="Input.RememberMe">
+                                    <input asp-for="Input.RememberMe" />
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-top border-secondary">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="p-t-20">
+                                <button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i>
+                                  <a asp-page="./ForgotPassword" style="padding: 10px 0px;">Lost password?</a>
+                                </button>
+                                <button class="btn btn-success float-right" type="submit">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    
+}

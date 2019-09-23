@@ -1,0 +1,21 @@
+@model IEnumerable<PosSustemUIU.Models.Area>
+
+@{
+    ViewData["Title"] = "Areas";
+}
+
+
+<div class="row">
+    <div class="col">
+        @await Component.InvokeAsync(
+        "DataTable", new DataTableModel { 
+            Controller = "Area",
+            Columns = new List<string>{"Name", "Description", "Text Code", "Numeric Code", "IsActive" },
+            Heading = "Areas",
+            TableData = Model,
+            CreateButton = true,
+            Keys = new List<string> {"Name", "Description", "TextCode", "NumericCode", "IsActive", },
+            Actions = new List<TableActions> {TableActions.Edit, TableActions.Delete, TableActions.SoftDelete}
+        })
+    </div>
+</div>

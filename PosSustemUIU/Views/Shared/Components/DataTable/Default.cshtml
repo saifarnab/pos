@@ -1,0 +1,115 @@
+@model DataTableModel
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-6">
+            <h5 class="card-title">@Model.Heading</h5>
+        </div>
+        <div class="col-sm-6">
+            @if (Model.CreateButton)
+            {
+                <button type="button" class="btn btn-primary btn-sm float-right">
+                    <a asp-controller="@Model.Controller" asp-action="Create" class="text-white">Add New</a>
+                </button>   
+            }
+        </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="zero_config" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width: 5%">SN</th>
+                        @if (Model.Columns.Any())
+                        {
+                            @foreach (var column in Model.Columns)
+                            {
+                                <th class="text-center">@column</th>                            
+                            }
+                        }
+                        @if (Model.Actions != null && Model.Actions.Any())
+                        {
+                            <th class="text-center" style="width: 15%">Actions</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.TableData != null && Model.TableData.Any())
+                    {
+                        int count = 0;
+                        foreach (var data in Model.TableData)
+                        {
+                            count++;
+                            <tr style="@( Model.Actions.Contains(TableActions.SoftDelete) && data.IsDeleted ? "background: #f1cfcf;" : "" )">
+                                <td class="text-center">@count</td>
+                                @if (Model.Keys != null && Model.Keys.Any())
+                                {
+                                    foreach(var key in Model.Keys){
+                                        if (key == "IsActive")
+                                        {
+                                            <td class="text-center">
+                                                @if (ViewHelpers.GetPropertyValue(data, key) == "1")
+                                                {
+                                                    <a asp-controller="@Model.Controller" asp-action="ChangeActiveStatus" asp-route-id="@data.Id"><span class="badge badge-primary">Yes</span> </a>
+                                                }
+                                                else{
+                                                    <a asp-controller="@Model.Controller" asp-action="ChangeActiveStatus" asp-route-id="@data.Id"><span class="badge badge-danger">No</span></a>
+                                                }
+                                            </td>
+                                        }
+                                        else if(key == "Image" && Model.ImageDir != null){
+                                            <td class="text-center">
+                                                @if (data.Image != null)
+                                                {
+                                                    <img src="~/uploads/@Model.ImageDir/@data.Image" alt="" srcset="" style="max-width: 50px">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/uploads/no_image.png" alt="" srcset="" style="max-width: 50px">
+                                                }
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center">@ViewHelpers.GetPropertyValue(data, key)</td>
+                                        } 
+                                    }
+                                }                    
+                                @if (Model.Actions != null && Model.Actions.Any())
+                                {
+                                    <td class="text-center">
+                                        <partial name="Table/Actionbuttons" model='new TableActionsVM{
+                                            Actions = Model.Actions,
+                                            TableData = data,
+                                            Controller = Model.Controller,
+
+                                        }'/>
+                                    </td>
+                                }
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+                
+                <tfoot>
+                    <tr>
+                        <th class="text-center" style="width: 5%">SN</th>
+                        @if (Model.Columns.Any())
+                        {
+                            @foreach (var column in Model.Columns)
+                            {
+                                <th class="text-center">@column</th>                            
+                            }
+                        }
+                        @if (Model.Actions != null && Model.Actions.Any())
+                        {
+                            <th class="text-center" style="width: 15%">Actions</th>
+                        }
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewData["Title"] - PosSustemUIU</title>
+    <partial name="_HeaderScripts" />
+    @RenderSection("Styles", required: false)
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+
+    <div id="main-wrapper">
+        <partial name="_TopHeader" />
+        <partial name="_LeftMenu" />
+
+        <div class="page-wrapper">
+            <partial name="_BreadCrumb" />
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+            <partial name="_Footer" />
+        </div>
+
+    </div>
+
+    <partial name="_FooterScripts" />
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

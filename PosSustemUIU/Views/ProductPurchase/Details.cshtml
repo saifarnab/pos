@@ -1,0 +1,132 @@
+@model PosSustemUIU.Models.ProductPurchase
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductPurchase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferenceInternal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReferenceInternal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferenceExternal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReferenceExternal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalVat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalVat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalQuantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalQuantity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVatPaid)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsVatPaid)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceivingCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReceivingCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Meta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Meta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeletedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeletedAt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Supplier.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TransectionType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TransectionType.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

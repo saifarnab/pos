@@ -1,0 +1,219 @@
+﻿<aside class="left-sidebar" data-sidebarbg="skin5">
+    <div class="scroll-sidebar">
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav" class="p-t-30">
+                
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-controller="Home" asp-action="Index" aria-expanded="false">
+                        <i class="mdi mdi-apple-keyboard-command"></i>
+                        <span class="hide-menu">DashBoard</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-controller="ProductSale" asp-action="Create" aria-expanded="false">
+                        <i class="mdi mdi-blur-linear"></i>
+                        <span class="hide-menu">Quick Sale</span>
+                    </a>
+                </li>
+
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-settings-variant"></i><span class="hide-menu">Manage Sale</span></a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item">
+                            <a asp-controller="ProductSale" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-multiple"></i>
+                                <span class="hide-menu"> Sales </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="ProductSale" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Sale return </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="Customer" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Customer </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-settings-variant"></i><span class="hide-menu">Manage Purchase</span></a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item">
+                            <a asp-controller="ProductPurchase" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-multiple"></i>
+                                <span class="hide-menu"> Purchases </span>
+                            </a>
+                        </li>
+
+                        <!-- <li class="sidebar-item">
+                            <a asp-controller="UserRole" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Purchase return </span>
+                            </a>
+                        </li> -->
+
+                        <li class="sidebar-item">
+                            <a asp-controller="Supplier" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Suppliers </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-settings-variant"></i><span class="hide-menu">Accounts</span></a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item">
+                            <a asp-controller="Employee" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-multiple"></i>
+                                <span class="hide-menu"> Invoices</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="Employee" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-multiple"></i>
+                                <span class="hide-menu"> Unpaid Invoices</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="Employee" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-multiple"></i>
+                                <span class="hide-menu"> General Expense</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="UserRole" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Reports </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li> -->
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-settings-variant"></i><span class="hide-menu">Inventory</span></a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item">
+                            <a asp-controller="Transection" asp-action="stocks" class="sidebar-link">
+                                <i class="mdi mdi-account-multiple"></i>
+                                <span class="hide-menu"> Stocks</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="Transection" asp-action="reports" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Reports </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="Transection" asp-action="LowInventory" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Low Inventory </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-settings-variant"></i><span class="hide-menu">Inventory Settings</span></a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item">
+                            <a asp-controller="Product" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-multiple"></i>
+                                <span class="hide-menu"> Products</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="ProductCategory" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Product Categories </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="Brand" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Product Brand </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="ProductGroup" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Product Group </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="Area" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Areas </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="UnitType" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Product Unit </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="TransectionType" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Transection Types</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-settings-variant"></i><span class="hide-menu">HR</span></a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item">
+                            <a asp-controller="Employee" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-multiple"></i>
+                                <span class="hide-menu"> Employess</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a asp-controller="UserRole" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu"> Employee Roles </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-settings-variant"></i><span class="hide-menu">Settings</span></a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item">
+                            <a asp-controller="StoreConfiguration" asp-action="Index" class="sidebar-link">
+                                <i class="mdi mdi-account-multiple"></i>
+                                <span class="hide-menu"> Store Configuration</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

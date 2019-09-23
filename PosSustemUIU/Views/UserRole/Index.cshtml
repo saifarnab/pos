@@ -1,0 +1,36 @@
+@model UserRoleVM
+<div class="row">
+    <div class="col-sm-8">
+        @await Component.InvokeAsync(
+            "DataTable", new DataTableModel { 
+                Controller = "UserRole",
+                Columns = new List<string>{"Role Name"},
+                Heading = "User Roles",
+                TableData = Model.Roles,
+                Keys = new List<string> {"Name"},
+                Actions = new List<TableActions> {}
+            })
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Add New Role</h4>
+            </div>
+            <form asp-controller="UserRole" asp-action="Create" method="POST" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>        
+                <div class="card-body">
+                    <div class="form-group m-t-20">
+                        <label>Role Name <span class="text-danger">*</span></label>
+                        <input Name="RoleName" type="text" class="form-control" placeholder="Name" required>
+                    </div>
+                    <div class="card-action">
+                        <button type="submit" class="btn btn-primary float-right">Submit</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>  
+            </form>
+        </div>
+    </div>
+</div>
+
+@TempData["message"]

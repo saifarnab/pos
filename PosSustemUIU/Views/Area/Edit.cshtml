@@ -1,0 +1,66 @@
+@model PosSustemUIU.Models.Area
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Upadte Area</h4>
+            </div>
+            <form asp-action="Edit">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                        <input type="hidden" asp-for="Id" />
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TextCode" class="control-label"></label>
+                                <input asp-for="TextCode" class="form-control" />
+                                <span asp-validation-for="TextCode" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NumericCode" class="control-label"></label>
+                                <input asp-for="NumericCode" class="form-control" />
+                                <span asp-validation-for="NumericCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" class="form-control" rows="9"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card-action">
+                            <button type="submit" class="btn btn-primary float-right">Update</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

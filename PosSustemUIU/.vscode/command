@@ -1,0 +1,24 @@
+dotnet aspnet-codegenerator controller -name TransectionController -m Transection -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+
+
+dotnet ef migrations add [migration name] 
+dotnet ef database update
+dotnet dev-certs https --trust
+
+
+------------------my alias-------------------------
+m-add [name] -> add new migrations
+updb         -> update database
+------------------ ./ my alias---------------------
+
+
+----------------------sqlite use with ef---------------------------
+
+ dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+ dotnet add package Microsoft.EntityFrameworkCore.Design
+
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    optionsBuilder.UseSqlite("Data Source=app.db");
+}
+----------------------./ sqlite use with ef---------------------------

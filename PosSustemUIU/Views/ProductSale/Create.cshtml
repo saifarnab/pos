@@ -1,0 +1,222 @@
+@model PosSustemUIU.Models.ProductSale
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div id="salePage">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <h4>Select Product</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead style="background: #e2e2e2;">
+                                <tr>
+                                    <th class="text-center font-weight-bold" style="width: 40%;">Product</th>
+                                    <th class="text-center font-weight-bold" style="width: 15%;">Price</th>
+                                    <th class="text-center font-weight-bold" style="width: 15%;">Quantity</th>
+                                    <th class="text-center font-weight-bold" style="width: 20%;">Expire Date</th>
+                                    <th class="text-center font-weight-bold" style="width: 10%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <select  class="select2 form-control custom-select" style="width: 100%;" id="product">
+                                            <option selected disabled value="">Select Product</option>
+                                                <template v-for="(product, index) in products">
+                                                    <option :value="index">{{ product.name }} - {{ product.price }}</option>
+                                            </template>
+                                        </select>
+                                        <span v-if="productError" class="text-danger">Select Product</span>
+                                    </td>
+                                    <td>
+                                        <input v-model="price" class="form-control" min="0" placeholder="price" type="number" name="" id="">
+                                        <span v-if="priceError" class="text-danger">Set Product Price</span>
+                                    </td>
+                                    <td>
+                                        <input v-model="quantity" class="form-control" min="0" placeholder="quantity" type="number" name="" id="">
+                                        <span v-if="quantityError" class="text-danger">Set Product Quantity</span>
+                                    </td>
+                                    <td>
+                                        <input readonly type="text" class="form-control mydatepicker" id="expireDate" placeholder="mm/dd/yyyy">
+                                        <span v-if="expireDateError" class="text-danger">Set Product Expired Date</span>
+
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-primary" v-on:click="addProductToList"><i class="fas fa-plus-square"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-12" v-if="selectedProducts.length > 0">
+                    <h4>Selected Products</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead style="background: #e2e2e2;">
+                                <tr>
+                                    <th class="text-center font-weight-bold" style="width: 40%;">Product</th>
+                                    <th class="text-center font-weight-bold" style="width: 15%;">Price</th>
+                                    <th class="text-center font-weight-bold" style="width: 15%;">Quantity</th>
+                                    <th class="text-center font-weight-bold" style="width: 20%;">Expire Date</th>
+                                    <th class="text-center font-weight-bold" style="width: 10%;"></th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <template v-for="(product, index) in selectedProducts">
+                                    <tr>
+                                        <td class="text-center">{{ product.productName }}</td>
+                                        <td class="text-center">{{ product.price }}</td>
+                                        <td class="text-center">{{ product.quantity }}</td>
+                                        <td class="text-center">{{ product.expireDate }}</td>
+                                        <td><button type="button" class="btn btn-sm btn-danger" v-on:click="removeSelectedProduct(product, index)"><i class="fas fa-minus-square"></i></button></td>
+                                    </tr>
+                                </template>
+                            </tbody>
+
+                            <tfoot>
+                                <tr>
+                                    <th class="text-center font-weight-bold" style="width: 40%;">Total</th>
+                                    <th class="text-center font-weight-bold" style="width: 15%;">&#2547; {{ totalPrice }} Tk</th>
+                                    <th class="text-center font-weight-bold" style="width: 15%;">{{ totalQuantity }}</th>
+                                    <th class="text-center font-weight-bold" style="width: 20%;"></th>
+                                    <th class="text-center font-weight-bold" style="width: 10%;"></th>
+                                </tr>
+                            </tfoot>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h4>Sale Summery</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group row">
+                        <label class="col-md-4" style="margin-top: 8px;">Total Quantity</label>
+                        <div class="col-md-8">
+                            <input v-model="totalQuantity" type="text" id="disabledTextInput" class="form-control" placeholder="0.00" disabled="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4" style="margin-top: 8px;">Total Price</label>
+                        <div class="col-md-8">
+                            <input v-model="totalPrice" type="text" id="disabledTextInput" class="form-control" placeholder="0.00" disabled="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group row">
+                        <label class="col-md-4" style="margin-top: 8px;">Discount</label>
+                        <div class="col-md-8">
+                            <input v-model="discount" type="number" id="disabledTextInput" class="form-control" placeholder="0.00" >
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4" style="margin-top: 8px;">Payable</label>
+                        <div class="col-md-8">
+                            <input v-model="payable" type="text" id="disabledTextInput" class="form-control" placeholder="0.00" disabled="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group row">
+                        <label class="col-md-4" style="margin-top: 8px;">Paid</label>
+                        <div class="col-md-8">
+                            <input type="number" v-model="paidAmount" id="disabledTextInput" class="form-control" placeholder="0.00" >
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4" style="margin-top: 8px;">Change Amount</label>
+                        <div class="col-md-8">
+                            <input v-model="changeAmount" type="text" id="disabledTextInput" class="form-control" placeholder="0.00" disabled="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h4>Billing Information</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Customer</label>
+                        <select  class="select2 form-control custom-select" style="width: 100%;" id="customerId">
+                            <option selected disabled value="">Select Customer</option>
+                             @foreach (var customer in ViewBag.Customers)
+                            {
+                                <option value="@customer.Id">@customer.FullName</option>
+                                
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReferenceInternal" class="control-label"></label>
+                        <input v-model="internalMemo" asp-for="ReferenceInternal" class="form-control" />
+                        <span asp-validation-for="ReferenceInternal" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Sale Date</label>
+                        <input class="form-control mydatepicker" placeholder="mm/dd/yyyy"/>
+                        <span  class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReferenceExternal" class="control-label"></label>
+                        <input v-model="externalMemo" asp-for="ReferenceExternal" class="form-control" id="saleDate"/>
+                        <span asp-validation-for="ReferenceExternal" class="text-danger"></span>
+                    </div>
+
+                    
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label  class="control-label">Sale Note</label>
+                        <textarea v-model="saleNote"  class="form-control" rows="5"></textarea>
+                        <span  class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="custom-control custom-checkbox mr-sm-2">
+                        <input asp-for="IsActive" type="checkbox" class="custom-control-input" id="customControlAutosizing1" checked>
+                        <label class="custom-control-label" for="customControlAutosizing1">Active</label>
+                    </div>
+                </div>
+                
+                <div class="col">
+                    <div class="card-action">
+                        <button type="button" v-on:click="saveProductSales" class="btn btn-primary float-right">Sale</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
+    <script src="~/js/sale.js"></script>
+
+}
